@@ -8,6 +8,27 @@ Dictionary<string, List<int>> bandasRegistradas = new Dictionary<string, List<in
 bandasRegistradas.Add("acdc", new List<int>{10,8,5});
 bandasRegistradas.Add("metallica", new List<int>());
 
+Banda banda = new Banda("Queen");
+
+Album album = new Album("A night of Opera");
+banda.AddAlbum(album);
+
+Musica musica = new Musica(banda, "history of my life")
+{
+    Duracao = 213,
+    Disponibilidade = true
+};
+
+Musica musica2 = new Musica(banda, "Bohemian Rhapsody")
+{
+    Duracao = 354,
+    Disponibilidade = false
+};
+
+
+album.AddMusica(musica);
+album.AddMusica(musica2);
+
 void ExibirLogo() 
 {
     Console.WriteLine("--------------------------------------------------------------");
@@ -28,6 +49,7 @@ void ExibirMenu()
     Console.WriteLine("Digite 2 para mostrar bandas");
     Console.WriteLine("Digite 3 para avaliar uma banda");
     Console.WriteLine("Digite 4 para mostrar a média de uma banda");
+    Console.WriteLine("Digite 5 para músicas de uma banda");
     Console.WriteLine("Digite -1 para sair");
 
     Console.Write("\nDigite sua opção: ");
@@ -43,6 +65,8 @@ void ExibirMenu()
         case 3 : RegistrarNotas();
             break;
         case 4 : ExibirMedia();
+            break;
+        case 5 : ExibirMusicas();
             break;
         case -1 : Console.WriteLine("**Adeus**");
             break;
@@ -142,6 +166,19 @@ void ExibirMedia()
 
 
 };
+
+void ExibirMusicas() 
+{
+    Console.Clear();
+    ExibirLogo();
+    ExibirCabecalho("Músicas cadastradas");
+
+    banda.ExbirDiscografia();
+    album.ExibirMusicas();
+    musica.ExibirInformacoes();
+    musica2.ExibirInformacoes();
+
+}
 
 void ExibirCabecalho(string titulo) 
 {
