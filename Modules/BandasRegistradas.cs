@@ -1,7 +1,8 @@
+namespace ScreenSound.Modules;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
 
-class Bandas 
+internal class Bandas 
 {
     private List<Banda> BandasLista = new List<Banda>();
 
@@ -19,12 +20,17 @@ class Bandas
         }
     }
 
-    // public Banda ConfereBanda(string banda)
+    public Banda ConfereBanda(string bandaEscolhida)
+    {
+        Banda bandaEncontrada = BandasLista.Find(banda => banda.Nome == bandaEscolhida)!;
+        return  bandaEncontrada!;
+
+    }
+
+    // public Banda retornaBanda(string bandaEscolhida)
     // {
-    //     //se banda já existe exibe menssagem
-    //     if(Bandas.Contains(banda))
+    //     return 
     //     {
-    //         return banda
 
     //     }
     // }

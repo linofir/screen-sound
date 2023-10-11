@@ -1,8 +1,8 @@
-
+namespace ScreenSound.Modules;
 using System.ComponentModel;
 using System.Dynamic;
 
-class Musica
+internal class Musica
 {
     public Musica(Banda banda, string nome)
     {

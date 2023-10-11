@@ -1,4 +1,5 @@
-class Album
+namespace ScreenSound.Modules;
+internal class Album
 {   
     private List<Musica> musicas = new List<Musica>();
 
@@ -18,9 +19,11 @@ class Album
 
     public void ExibirMusicas()
     {
+        int counter =0;
         foreach ( var musica  in musicas)
         {
-            Console.WriteLine($"Música: {musica.Nome}");
+            counter += 1;
+            Console.WriteLine($"Música-{counter}: {musica.Nome}");
         }
 
         Console.WriteLine($"Para o album {Nome} o tempo total de duração é: {DuracaoTotal}");

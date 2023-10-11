@@ -1,4 +1,6 @@
 ﻿//Screen Sound
+using ScreenSound.Modules;
+using ScreenSound.MOdules;
 using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
 
@@ -7,7 +9,7 @@ string menssagemHelloWorld = "\nBem vindo ao Screen Sound\n";
 Dictionary<Banda, List<int>> Bandas = new Dictionary<Banda, List<int>>();
 Bandas bandasLista = new Bandas();
 
-Banda banda = new Banda("Queen");
+Banda banda = new Banda("queen");
 Bandas.Add(banda, new List<int>{10,8,5});
 bandasLista.AddBanda(banda);
 
@@ -46,11 +48,12 @@ void ExibirMenu()
 {
     ExibirLogo();
 
-    Console.WriteLine("Digite 1 para registrar band");
+    Console.WriteLine("Digite 1 para registrar uma banda");
     Console.WriteLine("Digite 2 para mostrar bandas");
     Console.WriteLine("Digite 3 para avaliar uma banda");
     Console.WriteLine("Digite 4 para mostrar a média de uma banda");
-    Console.WriteLine("Digite 5 para músicas de uma banda");
+    Console.WriteLine("Digite 5 para registrar um Album");
+    Console.WriteLine("Digite 6 Exibir detalhes de uma Banda");
     Console.WriteLine("Digite -1 para sair");
 
     Console.Write("\nDigite sua opção: ");
@@ -67,7 +70,9 @@ void ExibirMenu()
             break;
         case 4 : ExibirMedia();
             break;
-        case 5 : ExibirMusicas();
+        case 5 : RegistrarAlbum();
+            break;
+        case 6 : ExibirMusicas();
             break;
         case -1 : Console.WriteLine("**Adeus**");
             break;
@@ -84,12 +89,23 @@ void RegistrarBandas()
     ExibirCabecalho("Registro de Bandas");
     Console.Write("Digite o nome da banda: ");
     string banda = Console.ReadLine()!;
-    Banda bandaNova = new Banda(banda);
-    bandasLista.AddBanda(bandaNova);
-    Console.WriteLine($"\nNome da banda {bandaNova.Nome} cadastrada com sucesso");
-    Thread.Sleep(2000);
-    Console.Clear();
-    ExibirMenu();
+    Banda bandaEncontrada = bandasLista.ConfereBanda(banda);
+    if(bandaEncontrada != null)
+    {
+        Console.WriteLine("Essa banda já está cadastrada");
+        Thread.Sleep(2000);
+        Console.Clear();
+        ExibirMenu();
+    }else
+    {
+        Banda bandaNova = new Banda(banda);
+        bandasLista.AddBanda(bandaNova);
+        Console.WriteLine($"\nNome da banda {bandaNova.Nome} cadastrada com sucesso");
+        Thread.Sleep(2000);
+        Console.Clear();
+        ExibirMenu();
+
+    }
 };
 
 void ExibirTodasBandas() 
@@ -114,14 +130,15 @@ void RegistrarNotas()
 
     Console.Write("Qual banda quer avaliar?");
     string bandaEscolhida = Console.ReadLine()!;
-    Banda bandaCriada = new Banda(bandaEscolhida);
+    Banda bandaEncontrada = bandasLista.ConfereBanda(bandaEscolhida);
     
-    if(bandasLista.Equals(bandaCriada))
+    if( bandaEncontrada != null)
     {
-        Console.Write($"\nQual sua nota para a banda {bandaCriada.Nome}?");
-        int nota = int.Parse(Console.ReadLine()!);
-        Avaliacao notas = new Avaliacao(nota, bandaCriada);
-        Console.WriteLine($"A {bandaCriada.Nome} recebeu a nota: {nota}");
+        Console.Write($"\nQual sua nota para a banda {bandaEncontrada.Nome}?");
+        Avaliacao nota = new Avaliacao(int.Parse(Console.ReadLine()!));
+        Console.WriteLine($"A {bandaEncontrada.Nome} recebeu a nota: {bandaEncontrada.Nota}");
+        bandaEncontrada.AddNota(nota);
+        bandaEncontrada.ExibeNotas();
         Thread.Sleep(2000);
         ExibirMenu();
     }else 
@@ -140,23 +157,21 @@ void ExibirMedia()
 
     Console.Write("Qual banda você quer saber a média? ");
     string bandaEscolhida = Console.ReadLine()!;
-    Banda bandaCriada = new Banda(bandaEscolhida); 
+    Banda bandaEncontrada = bandasLista.ConfereBanda(bandaEscolhida);
 
-    if(bandasLista.Equals(bandaCriada))
+    if(bandaEncontrada != null)
      {
-        Console.WriteLine("média");
-    //     if([bandaEscolhida].Count != 0)
-    //     {
-    //         double mediaBanda = Bandas[bandaEscolhida].Average();
-    //         Console.WriteLine($"A média da {bandaEscolhida} é {mediaBanda}");
-    //         Console.WriteLine("Digite qualquer tecla para retornar");
-    //         Console.ReadKey();
-    //         ExibirMenu();
-    //     }else{
-    //         Console.WriteLine($"A banda {bandaEscolhida} não recebeu nenhum voto");
-    //         Thread.Sleep(2000);
-    //         ExibirMenu();
-    //     }
+        if(bandaEncontrada.RetornaLista().Count != 0)
+        {
+            bandaEncontrada.ExibirMedia();
+            Console.WriteLine("Digite qualquer tecla para retornar");
+            Console.ReadKey();
+            ExibirMenu();
+        }else{
+            Console.WriteLine($"A banda {bandaEscolhida} não recebeu nenhum voto");
+            Thread.Sleep(2000);
+            ExibirMenu();
+        }
     }else   
     {
     Console.WriteLine($"A {bandaEscolhida} não existe");
@@ -177,6 +192,59 @@ void ExibirMusicas()
     album.ExibirMusicas();
     musica.ExibirInformacoes();
     musica2.ExibirInformacoes();
+
+}
+
+void RegistrarAlbum()
+{
+    Console.Clear();
+    ExibirLogo();
+    ExibirCabecalho("Avalie as Bandas");
+
+    Console.WriteLine("Deseja adicionar um album para qual banda");
+    string bandaEscolhida = Console.ReadLine()!;
+    Banda bandaEncontrada = bandasLista.ConfereBanda(bandaEscolhida);
+    if(bandaEncontrada != null)
+    {
+        Console.Write($"Digite o nome do algum da banda {bandaEncontrada.Nome}: ");
+        Album novoAlbum = new(Console.ReadLine()!);
+        bandaEncontrada.AddAlbum(novoAlbum);
+        bandaEncontrada.ExbirDiscografia();
+        Console.Write("Deseja incluir músicas nesse algum?(s/n)");
+        string opcaoEscolhida = Console.ReadLine()!;
+
+        if(opcaoEscolhida == "s" )
+        {
+            RegistraMusica(bandaEncontrada, novoAlbum);
+            Thread.Sleep(2000);
+            ExibirMenu();
+
+        }else
+        {
+            Thread.Sleep(2000);
+            ExibirMenu();
+        }
+
+    }else
+    {
+        Console.WriteLine($"A {bandaEscolhida} não existe");
+        Thread.Sleep(2000);
+        ExibirMenu();
+    }
+
+}
+
+void RegistraMusica(Banda banda, Album novoAlbum) 
+{
+    Console.Write("Digite o nome da música");
+    string nomeEscolhido = Console.ReadLine()!;
+    Musica novaMusica = new(banda, nomeEscolhido);
+    Console.Write("Digite a duração dessa música: ");
+    novaMusica.Duracao = int.Parse(Console.ReadLine()!);
+    novaMusica.Disponibilidade = true;
+
+    novoAlbum.AddMusica(novaMusica);
+    novoAlbum.ExibirMusicas();
 
 }
 
