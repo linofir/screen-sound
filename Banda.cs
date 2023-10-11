@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Security.Cryptography;
 
 class Banda
@@ -7,6 +8,8 @@ class Banda
 
     }
     private List<Album> albuns= new List<Album>();
+
+    public Avaliacao Notas {get; set;}
     public string Nome { get; set; }
 
 
@@ -21,4 +24,9 @@ class Banda
             Console.WriteLine($"A {Nome} tem os albuns: {album.Nome}({album.DuracaoTotal}s)");
         }
     }
+
+    // public void addNotas(lista)
+    // {
+    //     Notas = lista
+    // }
 }
