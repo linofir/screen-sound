@@ -23,7 +23,8 @@ internal class Album
         foreach ( var musica  in musicas)
         {
             counter += 1;
-            Console.WriteLine($"Música-{counter}: {musica.Nome}");
+            Console.WriteLine($"Música-{counter}: {musica.Nome}, ");
+            musica.ExibirInformacoes();
         }
 
         Console.WriteLine($"Para o album {Nome} o tempo total de duração é: {DuracaoTotal}");

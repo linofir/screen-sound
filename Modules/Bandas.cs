@@ -1,6 +1,4 @@
 namespace ScreenSound.Modules;
-using System.Diagnostics.Contracts;
-using System.Runtime.InteropServices;
 
 internal class Bandas 
 {
@@ -27,11 +25,4 @@ internal class Bandas
 
     }
 
-    // public Banda retornaBanda(string bandaEscolhida)
-    // {
-    //     return 
-    //     {
-
-    //     }
-    // }
 }

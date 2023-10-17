@@ -1,7 +1,7 @@
 namespace ScreenSound.Modules;
 using System.ComponentModel;
 using System.Security.Cryptography;
-using ScreenSound.MOdules;
+using ScreenSound.Modules;
 
 internal class Banda
 {
@@ -12,7 +12,7 @@ internal class Banda
     private List<Album> albuns= new List<Album>();
     private List<Avaliacao> notas = new List<Avaliacao>();
 
-    public int Nota { get; set; }
+    public int Nota { get; set; }   
     public string Nome { get; set; }
     
     public void ExibirMedia()
@@ -30,7 +30,10 @@ internal class Banda
     {
         foreach (var album in albuns)
         {
-            Console.WriteLine($"A {Nome} tem os albuns: {album.Nome}({album.DuracaoTotal}s)");
+            Console.WriteLine($"A {Nome} tem os albuns: {album.Nome}({album.DuracaoTotal}s)\n");
+            Console.WriteLine($"As Músicas do {album.Nome} são: ");
+            album.ExibirMusicas();
+            
         }
     }
 
@@ -46,7 +49,7 @@ internal class Banda
         foreach (var nota in notas)
         {   
             contador += 1;
-            Console.WriteLine($"Nota {contador}: {nota}");
+            Console.WriteLine($"Nota {contador}: {nota.Nota}");
             
         }
     }

@@ -1,4 +1,4 @@
-namespace ScreenSound.MOdules;
+namespace ScreenSound.Modules;
 
 internal class Avaliacao
 {
@@ -8,4 +8,10 @@ internal class Avaliacao
     }
 
     public int Nota { get; set; }
+
+    public static Avaliacao Parse(string notaTexto)
+    {
+        int nota = int.Parse(notaTexto);
+        return new Avaliacao(nota);
+    }
 }
