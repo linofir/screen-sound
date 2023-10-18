@@ -4,10 +4,9 @@ namespace ScreenSound.Menus;
 
 internal class MenuRegistrarBandas : Menu
 {
-    public void Executar(Bandas bandasLista)
+    public override void Executar(Bandas bandasLista)
     {
-        Console.Clear();
-        Menu.ExibirLogo();
+        base.Executar(bandasLista);
         ExibirCabecalho("Registro de Bandas");
         Console.Write("Digite o nome da banda: ");
         string banda = Console.ReadLine()!;

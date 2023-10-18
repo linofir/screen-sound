@@ -4,10 +4,9 @@ namespace ScreenSound.Menus;
 
 internal class MenuExibirBandas: Menu
 {
-    public void Executar(Bandas bandasLista)
+    public override void Executar(Bandas bandasLista)
     {
-        Console.Clear();
-        ExibirLogo();
+        base.Executar(bandasLista);
         ExibirCabecalho("Todas as bandas cadastradas");
 
         bandasLista.ExibirBandas();

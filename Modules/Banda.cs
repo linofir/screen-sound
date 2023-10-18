@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Security.Cryptography;
 using ScreenSound.Modules;
 
-internal class Banda
+internal class Banda : IAvaliacao
 {
     public Banda(string banda){
         Nome = banda;
@@ -28,9 +28,12 @@ internal class Banda
     }
     public void ExbirDiscografia()
     {
+        Console.WriteLine($"A banda {Nome} tem os seguintes albuns");
+        int counter = 0;
         foreach (var album in albuns)
         {
-            Console.WriteLine($"A {Nome} tem os albuns: {album.Nome}({album.DuracaoTotal}s)\n");
+            counter +=1;
+            Console.WriteLine($"{counter}: {album.Nome}({album.DuracaoTotal}s)\n");
             Console.WriteLine($"As Músicas do {album.Nome} são: ");
             album.ExibirMusicas();
             
@@ -59,6 +62,11 @@ internal class Banda
         return notas;
     }
 
+     public Album ConfereAlbum(string albumEscolhido)
+    {
+        Album albumEncontrado = albuns.Find(album => album.Nome == albumEscolhido)!;
+        return  albumEncontrado;
+    }
     
     
 

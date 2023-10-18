@@ -4,10 +4,9 @@ namespace ScreenSound.Menus;
 
 internal class MenuRegistrarAlbum : Menu
 {
-    public void Executar(Bandas bandasLista)
+    public override void Executar(Bandas bandasLista)
     {
-        Console.Clear();
-        ExibirLogo();
+        base.Executar(bandasLista);
         ExibirCabecalho("Avalie as Bandas");
 
         Console.WriteLine("Deseja adicionar um album para qual banda");
@@ -15,7 +14,7 @@ internal class MenuRegistrarAlbum : Menu
         Banda bandaEncontrada = bandasLista.ConfereBanda(bandaEscolhida);
         if(bandaEncontrada != null)
         {
-            Console.Write($"Digite o nome do algum da banda {bandaEncontrada.Nome}: ");
+            Console.Write($"Digite o nome do Album da banda {bandaEncontrada.Nome}: ");
             Album novoAlbum = new(Console.ReadLine()!);
             bandaEncontrada.AddAlbum(novoAlbum);
             bandaEncontrada.ExbirDiscografia();
@@ -25,7 +24,8 @@ internal class MenuRegistrarAlbum : Menu
             if(opcaoEscolhida == "s" )
             {
                 RegistraMusica(bandaEncontrada, novoAlbum);
-                Thread.Sleep(2000);
+                Console.WriteLine("Digite qualquer tecla para retornar");
+                Console.ReadKey();
                 ExibirMenu(bandasLista);
 
             }else
@@ -44,7 +44,7 @@ internal class MenuRegistrarAlbum : Menu
 
     public void RegistraMusica(Banda bandaEncontrada, Album novoAlbum)
     {
-        Console.Write("Digite o nome da música");
+        Console.Write("Digite o nome da música ");
         string nomeEscolhido = Console.ReadLine()!;
         Musica novaMusica = new(bandaEncontrada, nomeEscolhido);
         Console.Write("Digite a duração dessa música: ");
