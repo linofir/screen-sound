@@ -1,6 +1,21 @@
 ﻿//Screen Sound
+using System.Text.Json;
 using ScreenSound.Menus;
 using ScreenSound.Modules;
+
+using (HttpClient client = new HttpClient())
+{
+    try
+    {
+        string resposta = await  client.GetStringAsync("https://guilhermeonrails.github.io/api-csharp-songs/songs.json");
+        var musicas = JsonSerializer.Deserialize<List<Song>>(resposta)!;
+        Console.WriteLine($"Número toral de músicas é {musicas.Count}");
+        Console.WriteLine(musicas[0].Description);
+    }
+    catch(Exception ex){
+        Console.WriteLine($"Existe um erro: {ex.Message}");
+    }
+}
 
 
 
@@ -29,5 +44,5 @@ album.AddMusica(musica);
 album.AddMusica(musica2);
 
 Menu menu = new();
-menu.ExibirMenu(bandasLista);
+//menu.ExibirMenu(bandasLista);
 

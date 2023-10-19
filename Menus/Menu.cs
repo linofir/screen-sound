@@ -4,7 +4,6 @@ namespace ScreenSound.Menus;
 
 internal class Menu
 {
-    private int MenuSelecionado;
     public Dictionary<int, Menu> opcoes = new();
     
     public void ExibirMenu(Bandas bandasLista)

@@ -12,3 +12,17 @@ C:\Users\lino\Projetos_Programação\screen-sound\obj\Debug\net7.0\refint\screen
 C:\Users\lino\Projetos_Programação\screen-sound\obj\Debug\net7.0\screen-sound.pdb
 C:\Users\lino\Projetos_Programação\screen-sound\obj\Debug\net7.0\screen-sound.genruntimeconfig.cache
 C:\Users\lino\Projetos_Programação\screen-sound\obj\Debug\net7.0\ref\screen-sound.dll
+C:\Users\lino\Projetos_Programação\screen-sound\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\lino\Projetos_Programação\screen-sound\bin\Debug\net7.0\Microsoft.Extensions.Configuration.dll
+C:\Users\lino\Projetos_Programação\screen-sound\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\lino\Projetos_Programação\screen-sound\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\lino\Projetos_Programação\screen-sound\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\lino\Projetos_Programação\screen-sound\bin\Debug\net7.0\Microsoft.Extensions.Http.dll
+C:\Users\lino\Projetos_Programação\screen-sound\bin\Debug\net7.0\Microsoft.Extensions.Logging.dll
+C:\Users\lino\Projetos_Programação\screen-sound\bin\Debug\net7.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\lino\Projetos_Programação\screen-sound\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\lino\Projetos_Programação\screen-sound\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
+C:\Users\lino\Projetos_Programação\screen-sound\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\lino\Projetos_Programação\screen-sound\bin\Debug\net7.0\OpenAI_API.dll
+C:\Users\lino\Projetos_Programação\screen-sound\obj\Debug\net7.0\screen-sound.csproj.AssemblyReference.cache
+C:\Users\lino\Projetos_Programação\screen-sound\obj\Debug\net7.0\screen-sound.csproj.CopyComplete
